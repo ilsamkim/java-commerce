@@ -1,0 +1,58 @@
+package step1;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Product 리스트 생성
+        ArrayList<Product> products = new ArrayList<>();
+
+        // 상품 추가
+        products.add(new Product("Galaxy S24", 1200000, "최신 안드로이드 스마트폰", 1));
+        products.add(new Product("iPhone 16", 1350000, "Apple의 최신 스마트폰", 1));
+        products.add(new Product("MacBook Pro", 2400000, "M3 칩셋이 탑재된 노트북", 1));
+        products.add(new Product("AirPods Pro", 350000, "노이즈 캔슬링 무선 이어폰", 1));
+
+        while (true) {
+            // 상품 목록 출력
+            System.out.println("[ 실시간 커머스 플랫폼 - 전자제품 ]");
+
+            for (int i = 0; i < products.size(); i++) {
+                Product p = products.get(i);
+                System.out.println((i + 1) + ". " + p.getName() + " | "
+                        + String.format("%,d", p.getPrice()) + "원 | "
+                        + p.getDescription());
+            }
+
+            System.out.println("0. 종료 | 프로그램 종료");
+            System.out.print("재고량 확인을 원하시는 상품의 번호를 입력하세요: ");
+
+            // 입력
+            int choice = sc.nextInt();
+
+            // 재고 조회
+            if (choice >= 1 && choice <= products.size()) {
+                Product q = products.get(choice - 1);
+                System.out.println(q.getName() + " " + q.getStock() + "개");
+            }
+
+            // 종료 조건
+            if (choice == 0) {
+                System.out.println("커머스 플랫폼을 종료합니다.");
+                break;
+            }
+
+            // 유효성 검사
+            if (choice < 1 || choice > products.size()) {
+                System.out.println("잘못된 번호입니다. 다시 입력하세요.");
+            }
+        }
+
+        sc.close();
+
+    }
+}
