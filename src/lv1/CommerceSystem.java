@@ -33,11 +33,11 @@ public class CommerceSystem {
 
             if (!cart.isEmpty()) {
                 System.out.println("\n[ 주문 관리 ]");
-                System.out.println((categories.size() + 1) + ". 장바구니 보기");
-                System.out.println((categories.size() + 2) + ". 주문하기");
+                System.out.println((categories.size() + 1) + ". 장바구니 확인");
+                System.out.println((categories.size() + 2) + ". 주문 취소");
             }
 
-            System.out.print("\n원하시는 카테고리의 번호를 입력하세요: ");
+            System.out.print("\n선택: ");
 
             // 입력
             int categoryChoice = sc.nextInt();
@@ -54,7 +54,7 @@ public class CommerceSystem {
                 if (cart.isEmpty()) {
                     System.out.println("잘못된 입력입니다. 다시 입력하세요.\n");
                 } else {
-                    cart.showCart();
+                    processOrder(sc);
                 }
                 continue;
             }
@@ -64,7 +64,7 @@ public class CommerceSystem {
                 if (cart.isEmpty()) {
                     System.out.println("잘못된 입력입니다. 다시 입력하세요.\n");
                 } else {
-                    processOrder(sc);
+                    cancelorder();
                 }
                 continue;
             }
@@ -77,6 +77,12 @@ public class CommerceSystem {
                 System.out.println("잘못된 입력입니다. 다시 입력하세요.\n");
             }
         }
+    }
+
+    // cancelorder 메서드
+    private void cancelorder() {
+        cart.clear();
+        System.out.println("장바구니가 비워졌습니다. 주문이 취소되었습니다.\n");
     }
 
     // showCategoryProducts 메서드
@@ -93,7 +99,7 @@ public class CommerceSystem {
                         + p.getDescription() + " | 재고: " + p.getStock() + "개");
             }
 
-            System.out.println("0. 뒤로가기");
+            System.out.println("0. 뒤로가기\n");
             System.out.print("선택: ");
 
             int productChoice = sc.nextInt();
@@ -127,20 +133,20 @@ public class CommerceSystem {
         // 장바구니 출력
         cart.showCart();
 
-
         int confirm;
         while (true) {
-            System.out.print("주문하시겠습니까? (1: 예, 0: 아니오): ");
+            System.out.println("1. 주문 확정  2. 메인으로 돌아가기\n");
+            System.out.print("선택: ");
             confirm = sc.nextInt();
 
-            if (confirm == 1 || confirm == 0) {
+            if (confirm == 1 || confirm == 2) {
                 break;
             }
-            System.out.println("잘못된 입력입니다. 1 또는 0을 입력하세요.\n");
+            System.out.println("잘못된 입력입니다. 1 또는 2를 입력하세요.\n");
         }
 
         if (confirm != 1) {
-            System.out.println("주문이 취소되었습니다.\n");
+            System.out.println("메인으로 돌아갑니다.\n");
             return;
         }
 
@@ -175,13 +181,13 @@ public class CommerceSystem {
 
         int addToCart;
         while (true) {
-            System.out.print("장바구니에 담으시겠습니까? (1: 예, 0: 아니오): ");
+            System.out.print("장바구니에 담으시겠습니까? (1: 예, 2: 아니오): ");
             addToCart = sc.nextInt();
 
-            if (addToCart == 1 || addToCart == 0) {
+            if (addToCart == 1 || addToCart == 2) {
                 break;
             }
-            System.out.println("잘못된 입력입니다. 1 또는 0을 입력하세요.");
+            System.out.println("잘못된 입력입니다. 1 또는 2을 입력하세요.");
         }
 
         // 장바구니에 담기
