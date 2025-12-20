@@ -64,7 +64,7 @@ public class CommerceSystem {
                 if (cart.isEmpty()) {
                     System.out.println("잘못된 입력입니다. 다시 입력하세요.\n");
                 } else {
-                    cancelorder();
+                    cancelOrder();
                 }
                 continue;
             }
@@ -79,8 +79,8 @@ public class CommerceSystem {
         }
     }
 
-    // cancelorder 메서드
-    private void cancelorder() {
+    // cancelOrder 메서드
+    private void cancelOrder() {
         cart.clear();
         System.out.println("장바구니가 비워졌습니다. 주문이 취소되었습니다.\n");
     }
