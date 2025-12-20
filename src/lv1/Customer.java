@@ -6,7 +6,7 @@ public class Customer {
     private String email;
     private String grade;
 
-    public Customer(String CustomerName, String CustomerEmail, String CustomerGrade) {
+    public Customer(String name, String email, String grade) {
         this.name = name;
         this.email = email;
         this.grade = grade;
