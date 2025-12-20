@@ -29,9 +29,14 @@ public class CommerceSystem {
                 System.out.println((i + 1) + ". " + categories.get(i).getCategoryName());
             }
 
-            System.out.println((categories.size() + 1) + ". 장바구니 보기");
-            System.out.println((categories.size() + 2) + ". 주문하기");
             System.out.println("0. 종료 | 프로그램 종료");
+
+            if (!cart.isEmpty()) {
+                System.out.println("\n[ 주문 관리 ]");
+                System.out.println((categories.size() + 1) + ". 장바구니 보기");
+                System.out.println((categories.size() + 2) + ". 주문하기");
+            }
+
             System.out.print("\n원하시는 카테고리의 번호를 입력하세요: ");
 
             // 입력
@@ -46,13 +51,21 @@ public class CommerceSystem {
 
             // 장바구니 보기
             if (categoryChoice == categories.size() + 1) {
-                cart.showCart();
+                if (cart.isEmpty()) {
+                    System.out.println("잘못된 입력입니다. 다시 입력하세요.\n");
+                } else {
+                    cart.showCart();
+                }
                 continue;
             }
 
             // 주문하기
             if (categoryChoice == categories.size() + 2) {
-                processOrder(sc);
+                if (cart.isEmpty()) {
+                    System.out.println("잘못된 입력입니다. 다시 입력하세요.\n");
+                } else {
+                    processOrder(sc);
+                }
                 continue;
             }
 
@@ -61,7 +74,7 @@ public class CommerceSystem {
                 Category selectedCategory = categories.get(categoryChoice - 1);
                 showCategoryProducts(selectedCategory, sc);
             } else {
-                System.out.println("잘못된 번호입니다. 다시 입력하세요.\n");
+                System.out.println("잘못된 입력입니다. 다시 입력하세요.\n");
             }
         }
     }
@@ -93,7 +106,7 @@ public class CommerceSystem {
 
             // 유효성 검사
             if (productChoice < 1 || productChoice > products.size()) {
-                System.out.println("잘못된 번호입니다. 다시 입력하세요.");
+                System.out.println("잘못된 입력입니다. 다시 입력하세요.");
                 continue;
             }
 
