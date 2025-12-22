@@ -1,1 +1,61 @@
 # java-commerce
+실시간 커머스 플랫폼은 전자제품, 의류, 식품 등 다양한 카테고리의 상품을 관리하고 주문할 수 있는 쇼핑몰입니다.
+
+프로젝트 구조
+src/lv3/
+├── Main.java                 # 프로그램 진입점
+├── CommerceSystem.java       # 메인 시스템 (일반 사용자 기능)
+├── AdminMode.java            # 관리자 모드
+├── Category.java             # 카테고리 관리
+├── Product.java              # 상품 정보
+├── Cart.java                 # 장바구니 관리
+├── CartItem.java             # 장바구니 항목
+├── Customer.java             # 고객 정보
+└── CustomerGrade.java        # 고객 등급 Enum
+
+클래스 다이어그램
+Main
+└─ CommerceSystem
+├─ AdminMode
+├─ Cart
+│   └─ CartItem
+│       └─ Product
+└─ Category
+└─ Product
+CustomerGrade (Enum)
+
+주요 기능
+Level 1: 일반 사용자 기능
+* 카테고리별 상품 조회
+  전체 상품 보기
+  가격대별 필터링 (100만원 이하/초과)
+* 장바구니 관리
+  상품 추가/삭제
+  장바구니 내역 확인
+* 주문 처리
+  고객 등급별 할인 적용 (BRONZE 0%, SILVER 5%, GOLD 10%, PLATINUM 15%)
+  실시간 재고 차감
+  주문 취소
+
+Level 2: 관리자 기능
+* 상품 관리
+  상품 추가 (중복 검증 포함)
+  상품 수정 (가격, 설명, 재고수량)
+  상품 삭제 (장바구니 동기화)
+* 재고 관리
+  전체 상품 현황 조회
+  카테고리별 상품 확인
+* 보안
+  비밀번호 인증 (3회 실패 시 자동 종료)
+
+핵심 기술
+* 객체지향 프로그래밍 (OOP)
+  캡슐화: 모든 필드 private 처리 및 Getter/Setter 사용
+  단일 책임 원칙: 클래스별 명확한 역할 분리
+* Enum
+  고객 등급 관리 (CustomerGrade)
+  타입 안정성 보장
+* 람다 & 스트림 API
+  가격대별 상품 필터링
+  장바구니 상품 제거
+  총 금액 계산
